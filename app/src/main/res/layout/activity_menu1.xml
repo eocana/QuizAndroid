@@ -4,42 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultActivity">
+    tools:context=".Menu1Activity">
 
+    <EditText
+        android:id="@+id/editTextPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="232dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Enter a number..."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_finish"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="384dp"
-        android:text="@string/exit"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="284dp"
+        android:text="@string/button_next"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/resultView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
-        android:layout_marginTop="288dp"
-        android:padding="24dp"
-        android:text=""
+        android:id="@+id/textView"
+        android:layout_width="217dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="172dp"
+        android:text="How many players?"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="288dp"
-        android:padding="24dp"
-        android:text="@string/final_points"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
