@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Quiz1</string>
+    <string name="button_true">True</string>
+    <string name="button_false">False</string>
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
+    <string name="button_next">Next</string>
+    <string name="final_points">Puntos finales: </string>
+    <string name="points" />
+    <string name="exit">Salir</string>
+</resources>
