@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean botonAPresionado = false;
     private boolean botonBPresionado = false;
 
+
+
     private void disableButtons(boolean action){
         trueButton.setEnabled(action);
         falseButton.setEnabled(action);
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] nombreJugadores = getIntent().getStringArrayExtra("nombres_jugadores");
+
+        for (String a: nombreJugadores ) {
+            System.out.println("Nombre: "+a);
+        }
 
         Question[] questions = new Question[5];
 

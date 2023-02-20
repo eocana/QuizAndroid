@@ -56,8 +56,11 @@ public class Menu1Activity extends AppCompatActivity {
             public void onClick(View view) {
               numberPlayers = Integer.parseInt(editTextPlayers.getText().toString());
               if (numberPlayers > 0){
-                  Intent intent = new Intent(Menu1Activity.this, MainActivity.class);
+                  Intent intent = new Intent(Menu1Activity.this, NamesPlayersActivity.class);
+                  intent.putExtra("num_jugadores", numberPlayers);
                   startActivity(intent);
+
+
               }
             }
         });

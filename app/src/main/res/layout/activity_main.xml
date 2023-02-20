@@ -11,6 +11,15 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/nameplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Player: Lore Ipsum"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp" />
+
+    <TextView
         android:id="@+id/questionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

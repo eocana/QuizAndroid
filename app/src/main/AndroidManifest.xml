@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Quiz1"
         tools:targetApi="31">
         <activity
+            android:name=".NamesPlayersActivity"
+            android:exported="false" />
+        <activity
             android:name=".Menu1Activity"
             android:exported="true">
             <intent-filter>
@@ -20,16 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".ResultActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

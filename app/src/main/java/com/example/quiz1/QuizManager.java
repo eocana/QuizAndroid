@@ -4,7 +4,9 @@ import com.example.quiz1.controller.Controller;
 import com.example.quiz1.model.Player;
 import com.example.quiz1.model.Question;
 
-public class QuizManager {
+import java.io.Serializable;
+
+public class QuizManager  {
 
     private Controller controller;
     private Player[] players;
@@ -24,7 +26,7 @@ public class QuizManager {
 
     public void createPlayers(int nPlayers, String[] names){
         for (int i = 0; i < nPlayers; i++) {
-            players[i] = new Player(names[i]);
+            this.players[i] = new Player(names[i]);
         }
     }
 }

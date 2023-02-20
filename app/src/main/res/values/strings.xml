@@ -9,4 +9,5 @@
     <string name="final_points">Puntos finales: </string>
     <string name="points" />
     <string name="exit">Salir</string>
+    <string name="nameplayer">Write the name of the player</string>
 </resources>
