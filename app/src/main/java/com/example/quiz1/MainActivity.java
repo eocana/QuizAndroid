@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.quiz1.model.Question;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button trueButton;
@@ -37,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             points = points-2;
             Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
@@ -97,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("points", points);
                     startActivity(intent);
                 }
-
              }
          });
 

@@ -1,4 +1,4 @@
-package com.example.quiz1;
+package com.example.quiz1.model;
 
 public class Question {
     private String question;
