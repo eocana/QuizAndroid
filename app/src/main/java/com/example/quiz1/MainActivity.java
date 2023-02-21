@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean botonAPresionado = false;
     private boolean botonBPresionado = false;
 
+    private final QuizManager quizManager = new QuizManager();
 
 
     private void disableButtons(boolean action){
@@ -50,17 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         String[] nombreJugadores = getIntent().getStringArrayExtra("nombres_jugadores");
 
-        for (String a: nombreJugadores ) {
-            System.out.println("Nombre: "+a);
-        }
+        quizManager.createPlayers(nombreJugadores);
 
-        Question[] questions = new Question[5];
-
-        questions[0] =  new Question( "Eres humano?", true);
-        questions[1] =  new Question( "Estas estudiando?", true);
-        questions[2] =  new Question( "El XML es divertido", false);
-        questions[3] =  new Question( "Java esta divertido", true);
-        questions[4] =  new Question( "Has entendido todo lo que has hecho", true);
+        Question[] questions = quizManager.generateQuestions();
 
         trueButton = (Button) findViewById(R.id.button_true);
         falseButton = (Button) findViewById(R.id.button_false);
