@@ -29,7 +29,7 @@ public class Player implements Serializable {
     }
 
     public void restaPuntos(){
-        this.points=-10;
+        this.points=-2;
     }
 
 

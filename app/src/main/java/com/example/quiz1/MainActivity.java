@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.quiz1.model.Player;
 import com.example.quiz1.model.Question;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,11 +18,18 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private TextView questionView;
 
-    private int position = 0;
-    private int points = 0;
+    private TextView playerView;
 
+    private int position = 0;
+
+    private int round = 0;
+
+    private int totalPlayers = 0;
     private boolean botonAPresionado = false;
     private boolean botonBPresionado = false;
+
+    private Player[] players;
+    private Player player_actual;
 
     private final QuizManager quizManager = new QuizManager();
 
@@ -32,14 +40,11 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setEnabled(!action);
 
     }
-    private void checkQuestion(Question question, boolean answer){
+    private void checkToast(boolean check){
 
-        if (question.trueOrFalse() == answer){
-            System.out.println(question.trueOrFalse());
-            points = points+10;
+        if (check){
             Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
         } else {
-            points = points-2;
             Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
         }
     }
@@ -49,19 +54,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         String[] nombreJugadores = getIntent().getStringArrayExtra("nombres_jugadores");
 
-        quizManager.createPlayers(nombreJugadores);
-
-        Question[] questions = quizManager.generateQuestions();
 
         trueButton = (Button) findViewById(R.id.button_true);
         falseButton = (Button) findViewById(R.id.button_false);
         nextButton = (Button) findViewById(R.id.button_next);
+        questionView = (TextView) findViewById(R.id.questionView);
+        playerView = (TextView) findViewById(R.id.nameplayer);
+        totalPlayers = nombreJugadores.length;
+
+        players = new Player[totalPlayers];
+
+        players = quizManager.createPlayers(nombreJugadores);
+
+        player_actual = quizManager.getAPlayer(0);
+
         nextButton.setEnabled(false);
 
-        questionView = (TextView) findViewById(R.id.questionView);
+        Question[] questions = quizManager.generateQuestions();
+
         questionView.setText(questions[position].getQuestion());
+        playerView.setText("player: "+player_actual.getName());
 
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
                 botonAPresionado = true;
                 //nextButton.setEnabled(true);
                 disableButtons(false);
-                checkQuestion(questions[position], true);
+                boolean check = quizManager.checkQuestion(questions[position], true);
+                checkToast(check);
+                quizManager.actionPlayer(player_actual, check);
             }
         });
 
@@ -80,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 botonBPresionado = true;
                 //nextButton.setEnabled(true);
                 disableButtons(false);
-                checkQuestion(questions[position], false);
+                boolean check = quizManager.checkQuestion(questions[position], false);
+                checkToast(check);
+                quizManager.actionPlayer(player_actual, check);
+
             }
         });
 
@@ -91,12 +111,26 @@ public class MainActivity extends AppCompatActivity {
                 if (position < questions.length-1) {
                     position++;
                     disableButtons(true);
-                    //nextButton.setEnabled(false);
                     questionView.setText(questions[position].getQuestion());
                 }else {
-                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                    intent.putExtra("points", points);
-                    startActivity(intent);
+
+                    player_actual = quizManager.getAPlayer(round);
+                    players[round] = player_actual;
+
+                    position = 0;
+                    round++;
+
+                    playerView.setText("player: "+player_actual.getName());
+
+                    questionView.setText(questions[position].getQuestion());
+                    disableButtons(true);
+
+                    if (round == totalPlayers){
+                        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                        intent.putExtra("players", players);
+                        startActivity(intent);
+                    }
+
                 }
              }
          });

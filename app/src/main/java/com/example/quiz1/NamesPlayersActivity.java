@@ -40,6 +40,7 @@ public class NamesPlayersActivity extends AppCompatActivity {
 
                     index++;
                     nombreJugadorEditText.setText("");
+
                 }
             }
         });

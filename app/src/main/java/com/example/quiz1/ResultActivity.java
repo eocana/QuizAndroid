@@ -1,17 +1,26 @@
 package com.example.quiz1;
 
+import static com.example.quiz1.QuizManager.makeClasification;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.quiz1.model.Player;
 
 
 public class ResultActivity extends AppCompatActivity {
 
-    private TextView pointsView;
+    private TextView textView;
     private Button buttonExit;
+
+    private Player[] players;
 
 
 
@@ -19,10 +28,39 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
-        int points = getIntent().getIntExtra("points",0);
+        players = (Player[]) getIntent().getSerializableExtra("players");
+        players = makeClasification(players);
+        LinearLayout linearLayout = findViewById(R.id.linear_layout);
 
-        pointsView = (TextView) findViewById(R.id.resultView);
+
+
         buttonExit = (Button) findViewById(R.id.button_finish);
+
+        for (int i = 0; i < players.length; i++) {
+            TextView textView1 = new TextView(this);
+            textView1.setText("Player: "+players[i].getName());
+            textView1.setTextSize(24);
+            textView1.setTextColor(Color.BLACK);
+
+            TextView textView2 = new TextView(this);
+            textView2.setText("Total points: "+players[i].getPoints());
+            textView2.setTextSize(24);
+            textView2.setTextColor(Color.BLACK);
+
+            linearLayout.addView(textView1);
+            linearLayout.addView(textView2);
+
+            if (i % 2 == 1) {
+                View space = new View(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        30 // Ajusta la altura de la separación aquí
+                );
+                space.setLayoutParams(params);
+                linearLayout.addView(space);
+            }
+        }
+
 
         buttonExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +71,7 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
-        pointsView.setText(Integer.toString(points));
+       // pointsView.setText(Integer.toString(points));
 
     }
 
