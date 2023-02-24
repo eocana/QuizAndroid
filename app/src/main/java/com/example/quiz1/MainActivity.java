@@ -1,5 +1,6 @@
 package com.example.quiz1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
          nextButton.setOnClickListener(new View.OnClickListener() {
+             @SuppressLint("SetTextI18n")
              @Override
              public void onClick(View view) {
 
@@ -113,22 +115,23 @@ public class MainActivity extends AppCompatActivity {
                     disableButtons(true);
                     questionView.setText(questions[position].getQuestion());
                 }else {
-
-                    player_actual = quizManager.getAPlayer(round);
-                    players[round] = player_actual;
-
-                    position = 0;
                     round++;
-
-                    playerView.setText("player: "+player_actual.getName());
-
-                    questionView.setText(questions[position].getQuestion());
-                    disableButtons(true);
+                    position = 0;
 
                     if (round == totalPlayers){
                         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
                         intent.putExtra("players", players);
                         startActivity(intent);
+                    } else {
+
+                        player_actual = quizManager.getAPlayer(round);
+                        players[round] = player_actual;
+
+                        playerView.setText("player: "+player_actual.getName());
+
+                        questionView.setText(questions[position].getQuestion());
+                        disableButtons(true);
+
                     }
 
                 }

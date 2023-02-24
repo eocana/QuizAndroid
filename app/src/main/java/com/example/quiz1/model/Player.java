@@ -25,11 +25,11 @@ public class Player implements Serializable {
     }
 
     public void sumarPuntos(){
-        this.points=+10;
+        this.points= this.points+10;
     }
 
     public void restaPuntos(){
-        this.points=-2;
+        this.points= this.points-2;
     }
 
 
