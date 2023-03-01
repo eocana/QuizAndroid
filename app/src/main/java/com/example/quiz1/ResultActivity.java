@@ -4,7 +4,9 @@ import static com.example.quiz1.QuizManager.makeClasification;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.quiz1.model.Player;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ResultActivity extends AppCompatActivity {
@@ -25,6 +33,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private Player[] players;
 
+    private List<Player> list_players = new ArrayList<>();
 
 
     @Override
@@ -64,6 +73,24 @@ public class ResultActivity extends AppCompatActivity {
                 linearLayout.addView(space);
             }
         }
+
+        /*
+         Comprobar si tengo el json si esta null crear list
+         SharedPreferences prefs = getSharedPreferences("Player", MODE_PRIVATE);
+         String json = prefs.getString("listPlayers", "");
+         Gson gson = new Gson();
+         Type type = new TypeToken<ArrayList<MyObject>>(){}.getType();
+         ArrayList<Player> list_players = gson.fromJson(json, type);
+         list_players = Arrays.asList(players);
+
+         Gson gson = new Gson();
+         String json = gson.toJson(list_players);
+
+         SharedPreferences prefs = getSharedPreferences("Player", Context.MODE_PRIVATE);
+         SharedPreferences.Editor editor = prefs.edit();
+         editor.putString("listPlayers", json);
+         editor.apply();
+         */
 
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
